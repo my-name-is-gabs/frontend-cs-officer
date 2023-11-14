@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,56 +15,155 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  position: relative;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0%;
+  box-sizing: border-box;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.cs-bg-primary {
+  background: #223d7e !important;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.cs-bg-fadeblue {
+  background: #869cbf !important;
+}
+
+.cs-bg-client {
+  background: #3eb3c5 !important;
+}
+
+.cs-bg-grayish {
+  background: #a5a5a5 !important;
+}
+
+.cs-bg-light {
+  background: #dcf0fa !important;
+}
+
+.cs-bg-secondary {
+  background: #f0f0f0 !important;
+}
+
+.cs-border-top {
+  border-top: #223d7e 8px solid;
+}
+
+.cs-outline {
+  border-color: #223d7e !important;
+}
+
+.cs-btn-primary {
+  background: #f1c732 !important;
+  border: #223d7e 3px solid !important;
+  border-radius: 20rem !important;
+}
+
+.cs-btn-secondary {
+  background: white !important;
+  border: #223d7e 3px solid !important;
+  border-radius: 20rem !important;
+}
+
+.cs-btn-border {
+  border: #223d7e 3px solid !important;
+}
+
+.cs-border-box {
+  border: #223d7e 5px solid;
+  border-radius: 20px;
+  width: 90%;
+}
+
+.cs-radius {
+  border-radius: 20px;
+}
+
+.footer {
+  position: relative;
+  bottom: 0%;
+  right: 0%;
+  width: 100%;
+  margin: 4rem 0px;
+}
+
+.cs-btn-nolayout {
+  padding: 0%;
+  margin: 0%;
+  outline: none !important;
+  border: none !important;
+  background: transparent !important;
+  color: black;
+}
+
+.cs--sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cs--sidebar .cs--sidenavs {
+  height: auto;
+  list-style-type: none;
+  padding-left: 0%;
+  display: block;
+}
+
+.cs--sidebar .cs--sidenavs li {
+  width: 100%;
+  position: relative;
+  padding: 21px 0px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.cs--sidebar .cs--sidenavs li:hover,
+.cs--sidebar .cs--sidenavs li.active {
+  color: #00ff94;
+}
+
+.cs--sidebar .cs--sidenavs li:hover::before,
+.cs--sidebar .cs--sidenavs li.active::before {
+  content: "";
+  width: 6px;
+  background: #00ff94;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.cs--sidebar .cs--sidenavs li div {
+  width: 50%;
+  margin: 0px auto;
+}
+
+.offcanvas {
+  width: 280px !important;
+}
+
+.cs--header {
+  position: relative;
+  top: 0%;
+  padding: 8px 0;
+  background: #eeeeec;
+}
+
+.cs--header .cs--header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0% auto;
 }
