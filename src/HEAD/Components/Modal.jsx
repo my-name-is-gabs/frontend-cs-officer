@@ -2,17 +2,17 @@ const Modal = () => {
   return (
     <div
       className="modal fade"
-      id="officerModal"
+      id="headOfficerModal"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabIndex="-1"
-      aria-labelledby="officerModalLabel"
+      aria-labelledby="headOfficerModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog modal-xl modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header bg-info bg-gradient">
-            <h1 className="modal-title fs-5" id="officerModalLabel">
+            <h1 className="modal-title fs-5" id="headOfficerModalLabel">
               {"Applicant's"} Detail
             </h1>
             <button

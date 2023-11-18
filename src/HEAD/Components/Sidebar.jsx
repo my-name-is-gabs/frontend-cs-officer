@@ -4,11 +4,14 @@ const Sidebar = ({ pageCounter, setPageCounter }) => {
     <aside
       className="offcanvas offcanvas-start cs--sidebar cs-bg-primary"
       tabIndex="-1"
-      id="officerOffCanvas"
-      aria-labelledby="officerOffCanvasLabel"
+      id="headOfficerOffCanvas"
+      aria-labelledby="headOfficerOffCanvasLabel"
     >
       <div className="offcanvas-header">
-        <h5 className="offcanvas-title text-white" id="officerOffCanvasLabel">
+        <h5
+          className="offcanvas-title text-white"
+          id="headOfficerOffCanvasLabel"
+        >
           Welcome Username
         </h5>
         <button
@@ -41,7 +44,7 @@ const Sidebar = ({ pageCounter, setPageCounter }) => {
             onClick={() => setPageCounter(1)}
           >
             <div>
-              <i className="fa-solid fa-table me-2"></i> Records
+              <i className="fa-solid fa-chart-line me-2"></i> Dashboard
             </div>
           </li>
           <li
@@ -49,12 +52,20 @@ const Sidebar = ({ pageCounter, setPageCounter }) => {
             onClick={() => setPageCounter(2)}
           >
             <div>
-              <i className="fa-solid fa-circle-info me-2"></i> Info
+              <i className="fa-solid fa-hourglass-start me-2"></i> Initiate
             </div>
           </li>
           <li
             className={pageCounter === 3 ? "active" : ""}
             onClick={() => setPageCounter(3)}
+          >
+            <div>
+              <i className="fa-solid fa-circle-info me-2"></i> Info
+            </div>
+          </li>
+          <li
+            className={pageCounter === 4 ? "active" : ""}
+            onClick={() => setPageCounter(4)}
           >
             <div>
               <i className="fa-solid fa-user-gear me-2"></i> Profile

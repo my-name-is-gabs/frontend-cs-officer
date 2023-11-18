@@ -1,3 +1,5 @@
+import Modal from "../Components/Modal";
+
 const Home = () => {
   return (
     <>
@@ -16,6 +18,7 @@ const Home = () => {
           </div>
         </div>
         <div className="col-md-3">
+          <label htmlFor="type">Scholar filter</label>
           <select name="type" id="type" className="form-select">
             <option value="1">Scholar Option 1</option>
             <option value="1">Scholar Option 2</option>
@@ -69,7 +72,12 @@ const Home = () => {
                 <td>second</td>
                 <td>pending</td>
                 <td>
-                  <button type="button" className="btn btn-primary">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#officerModal"
+                  >
                     View <i className="fa-solid fa-eye"></i>
                   </button>
                 </td>
@@ -78,6 +86,9 @@ const Home = () => {
           </table>
         </div>
       </div>
+
+      {/* MODAL FORM */}
+      <Modal />
     </>
   );
 };

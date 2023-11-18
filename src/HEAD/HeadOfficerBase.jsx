@@ -1,28 +1,33 @@
-import Home from "./Home/Home";
-import "./officer.css";
+import Dashboard from "./Start/Dashboard";
 import Sidebar from "./Components/Sidebar";
-import Info from "./Pages/Info";
-import SettingsPage from "./Pages/SettingPage";
+import InitiateScholarship from "./Pages/InitiateScholarship";
+import "./headOfficer.css";
 import { useState } from "react";
+import Info from "./Pages/Info";
+import Profile from "./Pages/Profile";
 
-const OfficerBase = () => {
+const HeadOfficerBase = () => {
   const [pageCounter, setPageCounter] = useState(1);
 
   const PageNavigator = (page) => {
     switch (page) {
       case 1:
-        return <Home />;
+        return <Dashboard />;
 
       case 2:
-        return <Info />;
+        return <InitiateScholarship />;
 
       case 3:
-        return <SettingsPage />;
+        return <Info />;
+
+      case 4:
+        return <Profile />;
 
       default:
         return;
     }
   };
+
   return (
     <>
       <header className="cs--header shadow-sm">
@@ -31,8 +36,8 @@ const OfficerBase = () => {
             className="btn fs-5"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#officerOffCanvas"
-            aria-controls="offcanvasExample"
+            data-bs-target="#headOfficerOffCanvas"
+            aria-controls="headOfficerOffCanvas"
           >
             <i className="fa-solid fa-bars"></i>
           </button>
@@ -57,4 +62,4 @@ const OfficerBase = () => {
   );
 };
 
-export default OfficerBase;
+export default HeadOfficerBase;
