@@ -60,7 +60,7 @@ const Sidebar = ({ pageCounter, setPageCounter }) => {
             onClick={() => setPageCounter(3)}
           >
             <div>
-              <i className="fa-solid fa-circle-info me-2"></i> Info
+              <i className="fa-solid fa-user-gear me-2"></i> Profile
             </div>
           </li>
           <li
@@ -68,7 +68,7 @@ const Sidebar = ({ pageCounter, setPageCounter }) => {
             onClick={() => setPageCounter(4)}
           >
             <div>
-              <i className="fa-solid fa-user-gear me-2"></i> Profile
+              <i className="fa-solid fa-circle-info me-2"></i> Info
             </div>
           </li>
         </ul>

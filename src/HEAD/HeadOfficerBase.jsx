@@ -18,10 +18,10 @@ const HeadOfficerBase = () => {
         return <InitiateScholarship />;
 
       case 3:
-        return <Info />;
+        return <Profile />;
 
       case 4:
-        return <Profile />;
+        return <Info />;
 
       default:
         return;
