@@ -1,16 +1,17 @@
 import { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { SubmitButton } from "../components";
-// import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
+import LoadingPage from "../LoadingPage";
 
 import "./login.css";
 
 const Login = () => {
-  // const { handleLogin, error } = useContext(AuthContext);
+  const { handleAdminLogin, error, isLoading } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
 
   return (
     <>
+      {isLoading && <LoadingPage />}
       <div className="login-page_container">
         <aside className="login-page_sidebar">
           <div className="login-page_header">
@@ -25,15 +26,16 @@ const Login = () => {
           </div>
         </aside>
         <main className="login-page_main">
-          {/* {error && (
+          {error && (
             <div className="alert alert-danger" role="alert">
               {error}
             </div>
-          )} */}
+          )}
 
           <form
             className="login-page_form_container shadow"
-            // onSubmit={handleLogin}
+            onSubmit={handleAdminLogin}
+            method="post"
           >
             <h1 className="fw-bold fs-2 mt-5 text-center">
               Welcome to Centro Secretariat <br /> Admin Page
@@ -46,7 +48,7 @@ const Login = () => {
                 type="text"
                 className="form-control rounded login-border-primary"
                 id="username"
-                name="username"
+                name="admin_username"
                 autoComplete="off"
                 required
               />
@@ -59,7 +61,7 @@ const Login = () => {
                 type={showPass ? "text" : "password"}
                 className="form-control rounded login-border-primary"
                 id="password"
-                name="password"
+                name="admin_password"
                 required
               />
             </div>
@@ -76,12 +78,6 @@ const Login = () => {
             </div>
 
             <div className="d-flex justify-content-center gap-3">
-              <NavLink
-                to="/"
-                className="btn cs-btn-secondary fw-bold fs-5 shadow-sm px-4"
-              >
-                Cancel
-              </NavLink>
               <SubmitButton>Login</SubmitButton>
             </div>
           </form>

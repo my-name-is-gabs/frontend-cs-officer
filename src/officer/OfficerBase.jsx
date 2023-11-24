@@ -4,9 +4,12 @@ import Sidebar from "./Components/Sidebar";
 import Info from "./Pages/Info";
 import SettingsPage from "./Pages/SettingPage";
 import { useState } from "react";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const OfficerBase = () => {
   const [pageCounter, setPageCounter] = useState(1);
+  const { logoutAdmin } = useContext(AuthContext);
 
   const PageNavigator = (page) => {
     switch (page) {
@@ -14,10 +17,10 @@ const OfficerBase = () => {
         return <Home />;
 
       case 2:
-        return <Info />;
+        return <SettingsPage />;
 
       case 3:
-        return <SettingsPage />;
+        return <Info />;
 
       default:
         return;
@@ -43,7 +46,11 @@ const OfficerBase = () => {
               height={32}
               alt="profile"
             />
-            <a href="#logout" className="text-decoration-none text-dark">
+            <a
+              href="#"
+              className="text-decoration-none text-dark"
+              onClick={logoutAdmin}
+            >
               <i className="fa-solid fa-right-from-bracket"></i> Logout
             </a>
           </div>

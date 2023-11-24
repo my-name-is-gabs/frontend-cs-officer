@@ -1,14 +1,30 @@
 import { Routes, Route } from "react-router-dom";
 import HeadOfficerBase from "./HEAD/HeadOfficerBase";
-// import Login from "./login/Login";
-// import OfficerBase from "./officer/OfficerBase";
+import Login from "./login/Login";
+import OfficerBase from "./officer/OfficerBase";
+import PageNotFound from "./PageNotFound";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoutingOfficer from "./utils/PrivateRoutingOfficer";
+import PrivateRoutingHead from "./utils/PrivateRoutingHead";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" index element={<HeadOfficerBase />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" index element={<Login />} />
+          {/* Private Routing for scholar officer */}
+          <Route element={<PrivateRoutingOfficer />}>
+            <Route path="/officer" element={<OfficerBase />} />
+          </Route>
+          {/* Private Routing for head scholar officer */}
+          <Route element={<PrivateRoutingHead />}>
+            <Route path="/head" element={<HeadOfficerBase />} />
+          </Route>
+
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </AuthProvider>
     </>
   );
 }

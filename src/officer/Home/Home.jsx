@@ -5,20 +5,24 @@ const Home = () => {
     <>
       <div className="row">
         <div className="col-md-6">
-          <div className="container input-group">
-            <span className="input-group-text">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </span>
-            <input
-              type="search"
-              name="search_field"
-              className="form-control"
-              placeholder="Search..."
-            />
+          <div className="d-flex justify-content-center align-items-end h-100">
+            <div className="container input-group">
+              <span className="input-group-text">
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </span>
+              <input
+                type="search"
+                name="search_field"
+                className="form-control"
+                placeholder="Search..."
+              />
+            </div>
           </div>
         </div>
         <div className="col-md-3">
-          <label htmlFor="type">Scholar filter</label>
+          <label htmlFor="type" className="form-label">
+            Scholar filter
+          </label>
           <select name="type" id="type" className="form-select">
             <option value="1">Scholar Option 1</option>
             <option value="1">Scholar Option 2</option>

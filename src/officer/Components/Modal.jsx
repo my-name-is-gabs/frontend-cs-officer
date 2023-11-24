@@ -28,15 +28,11 @@ const Modal = () => {
             </div>
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
+            <button type="button" className="btn btn-danger">
+              Reject
             </button>
-            <button type="button" className="btn btn-primary">
-              Understood
+            <button type="button" className="btn btn-success">
+              Accept
             </button>
           </div>
         </div>
