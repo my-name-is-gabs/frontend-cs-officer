@@ -27,6 +27,7 @@ const Modal = ({ applicant_id }) => {
         })
       );
       alert("Applicant accepted");
+      return window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -41,6 +42,7 @@ const Modal = ({ applicant_id }) => {
         })
       );
       alert("Applicant rejected");
+      return window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +91,7 @@ const Modal = ({ applicant_id }) => {
                   </div>
                   <div className="card-body">
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-4">
                         <label
                           htmlFor="applying_for_academic_year"
                           className="form-label fw-bold"
@@ -100,13 +102,13 @@ const Modal = ({ applicant_id }) => {
                         <input
                           name="applying_for_academic_year"
                           id="applying_for_academic_year"
-                          className="form-control"
+                          className="form-control fw-bold text-danger"
                           value={fetchListData.applying_for_academic_year}
                           readOnly
                         />
                       </div>
 
-                      <div className="col-md-6">
+                      <div className="col-md-4">
                         <label
                           htmlFor="applicant_status"
                           className="form-label fw-bold"
@@ -118,13 +120,13 @@ const Modal = ({ applicant_id }) => {
                         <input
                           name="applicant_status"
                           id="applicant_status"
-                          className="form-control"
+                          className="form-control fw-bold text-danger"
                           value={fetchListData.applicant_status}
                           readOnly
                         />
                       </div>
 
-                      <div className="col-md-6">
+                      <div className="col-md-4">
                         <label
                           htmlFor="scholarship_type"
                           className="form-label fw-bold"
@@ -136,7 +138,7 @@ const Modal = ({ applicant_id }) => {
                         <input
                           name="scholarship_type"
                           id="scholarship_type"
-                          className="form-control"
+                          className="form-control fw-bold text-danger"
                           value={fetchListData.scholarship_type}
                           readOnly
                         />
@@ -1262,6 +1264,7 @@ const Modal = ({ applicant_id }) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => acceptApplication()}
+                data-bs-dismiss="modal"
               >
                 Yes
               </button>
@@ -1307,6 +1310,7 @@ const Modal = ({ applicant_id }) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => rejectApplication()}
+                data-bs-dismiss="modal"
               >
                 Yes
               </button>
