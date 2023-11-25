@@ -11,8 +11,6 @@ const ChangePassModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(passwordCred);
-
     if (passwordCred.new_password !== passwordCred.confirm_password) {
       alert("password mismatch");
       return;

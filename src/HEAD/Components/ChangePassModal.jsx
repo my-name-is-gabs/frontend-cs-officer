@@ -23,7 +23,6 @@ const ChangePassModal = () => {
         "/accounts/change-password/",
         JSON.stringify(passwordCred)
       );
-      console.log(res);
       if (res.status === 200) {
         alert("Password changed successfully");
       }

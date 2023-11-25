@@ -11,7 +11,6 @@ const Modal = ({ applicant_id }) => {
       try {
         const res = await axios.get(`/applications/list/${applicant_id}/`);
         setListData(res.data);
-        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
@@ -21,13 +20,13 @@ const Modal = ({ applicant_id }) => {
 
   const acceptApplication = async () => {
     try {
-      const res = await axios.patch(
+      await axios.patch(
         `/applications/list/${applicant_id}/`,
         JSON.stringify({
           application_status: "ACCEPTED",
         })
       );
-      console.log(res.data);
+      alert("Applicant accepted");
     } catch (error) {
       console.error(error);
     }
@@ -35,13 +34,13 @@ const Modal = ({ applicant_id }) => {
 
   const rejectApplication = async () => {
     try {
-      const res = await axios.patch(
+      await axios.patch(
         `/applications/list/${applicant_id}/`,
         JSON.stringify({
           application_status: "REJECTED",
         })
       );
-      console.log(res.data);
+      alert("Applicant rejected");
     } catch (error) {
       console.error(error);
     }
