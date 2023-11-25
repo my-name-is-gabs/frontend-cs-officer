@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { SubmitButton } from "../components";
 import AuthContext from "../context/AuthContext";
 import LoadingPage from "../LoadingPage";
+import { NavLink } from "react-router-dom";
 
 import "./login.css";
 
@@ -65,16 +66,21 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="mt-4 mb-5">
-              <input
-                className="form-check-input border border-1 border-dark"
-                type="checkbox"
-                id="showPassord"
-                onClick={() => setShowPass(!showPass)}
-              />
-              <label className="form-check-label ms-2" htmlFor="showPassord">
-                Show Password
-              </label>
+            <div className="d-inline-flex justify-content-between w-100">
+              <div className="mt-4 mb-5">
+                <input
+                  className="form-check-input border border-1 border-dark"
+                  type="checkbox"
+                  id="showPassord"
+                  onClick={() => setShowPass(!showPass)}
+                />
+                <label className="form-check-label ms-2" htmlFor="showPassord">
+                  Show Password
+                </label>
+              </div>
+              <NavLink to="/forgot-password" className="mt-4 mb-5">
+                Forgot Password
+              </NavLink>
             </div>
 
             <div className="d-flex justify-content-center gap-3">

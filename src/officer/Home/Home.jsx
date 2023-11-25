@@ -1,10 +1,29 @@
+import { useEffect } from "react";
 import Modal from "../Components/Modal";
+import axios from "../../api/api_connection";
+import { useState } from "react";
 
 const Home = () => {
+  const [fetchListData, setListData] = useState([]);
+  const [getApplicantId, setApplicantId] = useState("");
+
+  useEffect(() => {
+    const fetchingData = async () => {
+      try {
+        const res = await axios.get("/applications/list/");
+        setListData(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchingData();
+  }, []);
+
   return (
     <>
-      <div className="row">
-        <div className="col-md-6">
+      <div className="d-flex align-items-center">
+        {/* <div className="col-md-6">
           <div className="d-flex justify-content-center align-items-end h-100">
             <div className="container input-group">
               <span className="input-group-text">
@@ -18,17 +37,25 @@ const Home = () => {
               />
             </div>
           </div>
-        </div>
-        <div className="col-md-3">
+        </div> */}
+        <div className="col-md-3 me-4">
           <label htmlFor="type" className="form-label">
             Scholar filter
           </label>
           <select name="type" id="type" className="form-select">
-            <option value="1">Scholar Option 1</option>
-            <option value="1">Scholar Option 2</option>
-            <option value="1">Scholar Option 3</option>
+            <option selected="selected" defaultValue>
+              Choose Scholar Type...
+            </option>
+            <option value="BASIC PLUS SUC">BASIC PLUS SUC</option>
+            <option value="SUC_LCU">SUC/LCU</option>
+            <option value="BASIC SCHOLARSHIP">BASIC SCHOLARSHIP</option>
+            <option value="HONORS">HONORS</option>
+            <option value="PRIORITY">PRIORITY</option>
+            <option value="PREMIER">PREMIER</option>
           </select>
         </div>
+        <button className="btn btn-primary align-self-end me-2">Filter</button>
+        <button className="btn btn-secondary align-self-end">Clear</button>
       </div>
 
       <div className="card mt-4">
@@ -65,11 +92,13 @@ const Home = () => {
               <th scope="col">Full name</th>
               <th scope="col">Email</th>
               <th scope="col">Applying for Semester</th>
+              <th scope="col">Scholarship Type</th>
+              <th scope="col">Applicant Status</th>
               <th scope="col">Status</th>
               <th scope="col">Action</th>
             </thead>
             <tbody>
-              <tr>
+              {/* <tr>
                 <td>123</td>
                 <td>John Doe</td>
                 <td>jd@gmail.com</td>
@@ -80,19 +109,43 @@ const Home = () => {
                     type="button"
                     className="btn btn-primary"
                     data-bs-toggle="modal"
-                    data-bs-target="#officerModal"
+                    data-bs-target="#scholarListModal"
                   >
                     View <i className="fa-solid fa-eye"></i>
                   </button>
                 </td>
-              </tr>
+              </tr> */}
+              {fetchListData.map((list, i) => (
+                <tr key={i}>
+                  <td>{list.application_reference_id}</td>
+                  <td>{list.firstname}</td>
+                  <td>{list.email_address}</td>
+                  <td>{list.semester}</td>
+                  <td>{list.scholarship_type}</td>
+                  <td>{list.applicant_status}</td>
+                  <td>pending</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() =>
+                        setApplicantId(list.application_reference_id)
+                      }
+                      data-bs-toggle="modal"
+                      data-bs-target="#scholarListModal"
+                    >
+                      View <i className="fa-solid fa-eye"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
 
       {/* MODAL FORM */}
-      <Modal />
+      <Modal applicant_id={getApplicantId} />
     </>
   );
 };
