@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "../api/api_connection";
-
 const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
@@ -53,13 +52,8 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
 
-      if (adminUser.role === "HEAD" && adminUser.isActive) {
-        setLoading(false);
-        return navigate("/head");
-      } else if (adminUser.role === "OFFICER" && adminUser.isActive) {
-        setLoading(false);
-        return navigate("/officer");
-      }
+      setLoading(false);
+      return navigate("/officer");
     } catch (err) {
       setLoading(false);
       console.error(err);
@@ -68,6 +62,8 @@ export const AuthProvider = ({ children }) => {
         e.target.admin_username.value = "";
         e.target.admin_password.value = "";
       }
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
     }
   };
 
