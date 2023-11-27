@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "../../api/api_connection";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassModal = () => {
   const [passwordCred, setPassword] = useState({
@@ -7,6 +8,7 @@ const ChangePassModal = () => {
     new_password: "",
     confirm_password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +26,14 @@ const ChangePassModal = () => {
       console.log(res);
       if (res.status === 200) {
         alert("Password changed successfully");
+        navigate("/");
       }
     } catch (error) {
-      alert("Something went wrong");
+      alert(`Something went wrong: ${error.message}`);
+      if (error.response.status === 401) {
+        alert("Session has expired");
+        navigate("/login");
+      }
     }
   };
 

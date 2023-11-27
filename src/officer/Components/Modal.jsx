@@ -2,21 +2,27 @@ import { useEffect } from "react";
 import axios from "../../api/api_connection";
 import { useState } from "react";
 import { courseTakingOptions } from "../../helper/selectionData";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Modal = ({ applicant_id }) => {
   const [fetchListData, setListData] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchingData = async () => {
       try {
         const res = await axios.get(`/applications/list/${applicant_id}/`);
         setListData(res.data);
       } catch (error) {
-        console.error(error);
+        alert(`Something went wrong: ${error.message}`);
+        if (error.response.status === 401) {
+          alert("Session has expired");
+          navigate("/");
+        }
       }
     };
     fetchingData();
-  }, [applicant_id]);
+  }, [applicant_id, navigate]);
 
   const acceptApplication = async () => {
     try {
@@ -29,7 +35,11 @@ const Modal = ({ applicant_id }) => {
       alert("Applicant accepted");
       return window.location.reload();
     } catch (error) {
-      console.error(error);
+      alert(`Something went wrong: ${error.message}`);
+      if (error.response.status === 401) {
+        alert("Session has expired");
+        navigate("/");
+      }
     }
   };
 
@@ -44,7 +54,11 @@ const Modal = ({ applicant_id }) => {
       alert("Applicant rejected");
       return window.location.reload();
     } catch (error) {
-      console.error(error);
+      alert(`Something went wrong: ${error.message}`);
+      if (error.response.status === 401) {
+        alert("Session has expired");
+        navigate("/");
+      }
     }
   };
 
@@ -1061,7 +1075,7 @@ const Modal = ({ applicant_id }) => {
                           htmlFor="voters_issued_at"
                           className="form-label fw-bold"
                         >
-                          LAST NAME:
+                          ADDRESS:
                         </label>
                         <input
                           type="text"
@@ -1143,7 +1157,7 @@ const Modal = ({ applicant_id }) => {
                           htmlFor="voters_issued_at"
                           className="form-label fw-bold"
                         >
-                          LAST NAME:
+                          ADDRESS:
                         </label>
                         <input
                           type="text"

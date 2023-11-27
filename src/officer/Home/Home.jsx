@@ -3,12 +3,14 @@ import Modal from "../Components/Modal";
 import axios from "../../api/api_connection";
 import { useState } from "react";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [fetchListData, setListData] = useState([]);
   const [getApplicantId, setApplicantId] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
   const [filteredList, setFilterList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -16,10 +18,15 @@ const Home = () => {
         const res = await axios.get("/applications/list/");
         setListData(res.data);
       } catch (error) {
-        console.error(error);
+        alert(`Something went wrong: ${error.message}`);
+        if (error.response.status === 401) {
+          alert("Session has expired");
+          navigate("/");
+        }
       }
     };
     fetchingData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -41,21 +48,6 @@ const Home = () => {
   return (
     <>
       <div className="d-flex align-items-center">
-        {/* <div className="col-md-6">
-          <div className="d-flex justify-content-center align-items-end h-100">
-            <div className="container input-group">
-              <span className="input-group-text">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </span>
-              <input
-                type="search"
-                name="search_field"
-                className="form-control"
-                placeholder="Search..."
-              />
-            </div>
-          </div>
-        </div> */}
         <div className="col-md-3 me-4">
           <label htmlFor="type" className="form-label">
             Scholarship type filter
