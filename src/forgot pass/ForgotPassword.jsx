@@ -31,7 +31,7 @@ const ForgotPassword = () => {
   return (
     <>
       {isLoading && <LoadingPage />}
-      <div className="container d-flex flex-col align-items-center justify-content-center mt-5">
+      <div className="container d-flex flex-column align-items-center justify-content-center mt-5">
         <h1 className="fw-bold mb-4">Retrieve Password</h1>
         <div className="col-md-6">
           <div className="card">
