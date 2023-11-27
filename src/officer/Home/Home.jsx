@@ -26,8 +26,6 @@ const Home = () => {
         }
         if (error.response.status === 404) {
           console.error(error.response.data);
-        } else {
-          alert(`Something went wrong: ${error.message}`);
         }
       }
     };
