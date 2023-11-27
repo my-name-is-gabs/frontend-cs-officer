@@ -10,8 +10,8 @@ const ForgotPassword = () => {
 
   const retrievePass = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
+      setLoading(true);
       const res = await axios.post(
         "/forgot-password/",
         JSON.stringify({ email })
@@ -19,8 +19,8 @@ const ForgotPassword = () => {
       console.log(res);
       if (res.status === 200) {
         alert("Password reset was sent to your gmail");
-        navigate("/");
         setLoading(false);
+        navigate("/");
       }
     } catch (error) {
       setLoading(false);
@@ -32,6 +32,7 @@ const ForgotPassword = () => {
     <>
       {isLoading && <LoadingPage />}
       <div className="container d-flex align-items-center justify-content-center mt-5">
+        <h1>Retrieve Password</h1>
         <div className="col-md-6">
           <div className="card">
             <div className="card-header cs-bg-primary bg-gradient fw-bold text-white">
