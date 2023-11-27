@@ -4,12 +4,14 @@ import axios from "../../api/api_connection";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingPage from "../../LoadingPage";
 
 const Home = () => {
   const [fetchListData, setListData] = useState([]);
   const [getApplicantId, setApplicantId] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
   const [filteredList, setFilterList] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,6 +49,7 @@ const Home = () => {
 
   return (
     <>
+      {isLoading && <LoadingPage />}
       <div className="d-flex align-items-center">
         <div className="col-md-3 me-4">
           <label htmlFor="type" className="form-label">
@@ -171,7 +174,7 @@ const Home = () => {
       </div>
 
       {/* MODAL FORM */}
-      <Modal applicant_id={getApplicantId} />
+      <Modal applicant_id={getApplicantId} setLoading={setLoading} />
     </>
   );
 };

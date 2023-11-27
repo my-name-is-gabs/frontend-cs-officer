@@ -5,15 +5,21 @@ import { courseTakingOptions } from "../../helper/selectionData";
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const Modal = ({ applicant_id }) => {
+const Modal = ({ applicant_id, setLoading }) => {
   const [fetchListData, setListData] = useState({});
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchingData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(`/applications/list/${applicant_id}/`);
-        setListData(res.data);
+        if (res.status === 200) {
+          setListData(res.data);
+          setLoading(false);
+        }
       } catch (error) {
+        setLoading(false);
         alert(`Something went wrong: ${error.message}`);
         if (error.response.status === 401) {
           alert("Session has expired");
@@ -22,10 +28,11 @@ const Modal = ({ applicant_id }) => {
       }
     };
     fetchingData();
-  }, [applicant_id, navigate]);
+  }, [applicant_id, navigate, setLoading]);
 
   const acceptApplication = async () => {
     try {
+      setLoading(true);
       await axios.patch(
         `/applications/list/${applicant_id}/`,
         JSON.stringify({
@@ -33,8 +40,10 @@ const Modal = ({ applicant_id }) => {
         })
       );
       alert("Applicant accepted");
+      setLoading(false);
       return window.location.reload();
     } catch (error) {
+      setLoading(false);
       alert(`Something went wrong: ${error.message}`);
       if (error.response.status === 401) {
         alert("Session has expired");
@@ -45,6 +54,7 @@ const Modal = ({ applicant_id }) => {
 
   const rejectApplication = async () => {
     try {
+      setLoading(true);
       await axios.patch(
         `/applications/list/${applicant_id}/`,
         JSON.stringify({
@@ -52,8 +62,10 @@ const Modal = ({ applicant_id }) => {
         })
       );
       alert("Applicant rejected");
+      setLoading(false);
       return window.location.reload();
     } catch (error) {
+      setLoading(true);
       alert(`Something went wrong: ${error.message}`);
       if (error.response.status === 401) {
         alert("Session has expired");
