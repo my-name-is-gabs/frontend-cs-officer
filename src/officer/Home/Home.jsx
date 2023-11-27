@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        const res = await axios.get("/applications/list");
+        const res = await axios.get("/applications/list/");
         setListData(res.data);
       } catch (error) {
         alert(`Something went wrong: ${error.message}`);
@@ -28,8 +28,7 @@ const Home = () => {
       }
     };
     fetchingData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     setFilterList(() => fetchListData);
