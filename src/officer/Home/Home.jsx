@@ -20,10 +20,14 @@ const Home = () => {
         const res = await axios.get("/applications/list/");
         setListData(res.data);
       } catch (error) {
-        alert(`Something went wrong: ${error.message}`);
         if (error.response.status === 401) {
           alert("Session has expired");
           navigate("/");
+        }
+        if (error.response.status === 404) {
+          console.error(error.response.data);
+        } else {
+          alert(`Something went wrong: ${error.message}`);
         }
       }
     };
