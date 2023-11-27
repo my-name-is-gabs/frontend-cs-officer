@@ -49,9 +49,9 @@ const ForgotPassword = () => {
               />
             </div>
             <div className="card-footer">
-              <div className="d-flex justify-content-end">
+              <div className="d-flex justify-content-end gap-4">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-secondary"
                   onClick={() => navigate("/")}
                 >
                   Cancel
