@@ -39,8 +39,8 @@ const Modal = ({ applicant_id, setLoading }) => {
           application_status: "ACCEPTED",
         })
       );
-      alert("Applicant accepted");
       setLoading(false);
+      alert("Applicant accepted");
       return window.location.reload();
     } catch (error) {
       setLoading(false);
@@ -61,8 +61,8 @@ const Modal = ({ applicant_id, setLoading }) => {
           application_status: "REJECTED",
         })
       );
-      alert("Applicant rejected");
       setLoading(false);
+      alert("Applicant rejected");
       return window.location.reload();
     } catch (error) {
       setLoading(true);
