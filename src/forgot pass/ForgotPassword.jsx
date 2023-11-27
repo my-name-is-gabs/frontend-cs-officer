@@ -50,6 +50,12 @@ const ForgotPassword = () => {
             </div>
             <div className="card-footer">
               <div className="d-flex justify-content-end">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate("/")}
+                >
+                  Cancel
+                </button>
                 <button className="btn btn-primary" onClick={retrievePass}>
                   Continue
                 </button>
